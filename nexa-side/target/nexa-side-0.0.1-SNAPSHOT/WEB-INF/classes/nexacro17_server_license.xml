@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<license version="1.1">
+	<product>
+		<name>nexacro&#32;platform</name>
+		<version>17</version>
+		<function>Runtime,WebBrowser</function>
+	</product>
+	<customer>
+		<name>내부_교육용_S/W_구입</name>
+		<coreCount>1</coreCount>
+		<ipAddress>192.168.219.127</ipAddress>
+		<targetPlatform>Windows,WindowsRT,macOS,iOS,Android,WindowsXP</targetPlatform>
+	</customer>
+	<date>
+		<activation>2021-10-08</activation>
+		<term>0</term>
+	</date>
+	<key>EJX36A9ECR9GN57F8CZR6FRUKQW7PXCWV</key>
+</license>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1280" height="720" titletext="New Form" onload="form_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Combo id="Combo00" taborder="0" text="eno" left="30" top="60" width="132" height="26" onitemchanged="Combo00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="eno">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">eno</Col>
+                <Col id="datacolumn">사번</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">ename</Col>
+                <Col id="datacolumn">이름</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Edit id="Edit00" taborder="1" left="172" top="60" width="246" height="26"/>
+        <Button id="Button00" taborder="2" text="검 색" left="454" top="55" width="130" height="36" onclick="Button00_onclick"/>
+        <Grid id="Grid00" taborder="3" left="30" top="104" width="554" height="313" binddataset="ds_emp" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="직급"/>
+                <Cell col="3" text="사수"/>
+                <Cell col="4" text="입사일"/>
+                <Cell col="5" text="급여"/>
+                <Cell col="6" text="보너스"/>
+                <Cell col="7" text="부서번호"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:eno"/>
+                <Cell col="1" text="bind:ename"/>
+                <Cell col="2" text="bind:job"/>
+                <Cell col="3" text="bind:manager"/>
+                <Cell col="4" text="bind:hiredate"/>
+                <Cell col="5" text="bind:salary"/>
+                <Cell col="6" text="bind:commission"/>
+                <Cell col="7" text="bind:dno"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_emp">
+        <ColumnInfo>
+          <Column id="eno" type="INT" size="256"/>
+          <Column id="ename" type="STRING" size="256"/>
+          <Column id="job" type="STRING" size="256"/>
+          <Column id="manager" type="STRING" size="256"/>
+          <Column id="hiredate" type="DATE" size="256"/>
+          <Column id="salary" type="INT" size="256"/>
+          <Column id="commission" type="INT" size="256"/>
+          <Column id="dno" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_dept">
+        <ColumnInfo>
+          <Column id="dno" type="INT" size="256"/>
+          <Column id="dname" type="STRING" size="256"/>
+          <Column id="loc" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="keyword" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnSearch();
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+this.fnSearch = function ()
+{
+	// 조회조건 세팅
+	this.ds_search.setColumn(0, "searchType", this.Combo00.value);
+	this.ds_search.setColumn(0, "keyword", this.Edit00.text);
+	
+	var svcID = "search";
+	var svcURL = "Svc::employee";
+	var inData = "input=ds_search";
+	var outData = "ds_emp=output";
+	var arg = "";
+	var callBack = "fnCallback";
+	var isAsync = true;
+	
+	this.transaction(
+		svcID,
+		svcURL,
+		inData,
+		outData,
+		arg,
+		callBack,
+		isAsync
+	);
+};
+
+this.fnCallback = function (svcID, errCode, errMsg)
+{
+	// 에러 시 회면처리
+	if (errCode != 0)
+	{
+		this.alert(errCode + " : " + errMsg);
+		return
+	}
+	
+	switch(svcID) {
+		case "search":
+			if (this.ds_emp.rowcount < 1)
+			{
+				this.alert("조회된 결과가 없습니다.");
+			}
+			break;
+	}
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

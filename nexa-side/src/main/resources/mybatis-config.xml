@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- Mybatis 관련 설정 작성하기 * 아래 순서 중요, 바뀌면 안됨! -->
+	
+	<!-- SqlSessionTemplate 관련 설정 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+ 	</settings>
+ 	
+ 	<!-- 별칭 작성 부분 -->
+	<typeAliases>
+		<typeAlias type="sample.vo.EmpVO" 		alias="employee"/>
+		<typeAlias type="sample.vo.SearchVO"  	alias="search"/>
+	</typeAliases>
+ 	
+ 	<!-- 데이터 조회 시 값이 없으면 컬럼도 null 로 넘어오지만, 해당 플러그인 사용 시 값이 없어도 컬럼값을 가져올 수 있다 -->
+ 	<plugins>
+ 		<plugin interceptor="com.nexacro.uiadapter17.spring.dao.mybatis.NexacroMybatisMetaDataProvider" />
+ 		<plugin interceptor="com.nexacro.uiadapter17.spring.dao.mybatis.NexacroMybatisResultSetHandler" />
+ 	</plugins>
+	
+	<!-- SQL이 작성되는 mapper 파일 위치 등록 -->
+	<mappers>
+		<mapper resource="/mappers/employee-mapper.xml"/>
+	</mappers>
+
+</configuration>
