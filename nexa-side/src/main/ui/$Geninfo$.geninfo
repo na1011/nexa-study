@@ -9,12 +9,12 @@
       <Script rule_version="1.02"/>
     </Rule>
     <Info project="C:\JAVA\Backend\STS3\nexa-side\src\main\ui\" generated="C:\JAVA\Backend\STS3\nexa-side\src\main\webapp\sample\">
-      <File url="typedefinition.xml" checksum="20240524124219" errormsg=""/>
-      <File url="appvariables.xml" checksum="20240524094140" errormsg=""/>
-      <File url="environment.xml" checksum="20240524094140" errormsg=""/>
+      <File url="typedefinition.xml" checksum="20240527141331" errormsg=""/>
+      <File url="appvariables.xml" checksum="20240527143237" errormsg=""/>
+      <File url="environment.xml" checksum="20240527141825" errormsg=""/>
       <File url="_resource_\_theme_\default\theme.xcss" checksum="20240524094140" errormsg=""/>
-      <File url="Application_Desktop.xadl" checksum="20240524175503" errormsg=""/>
-      <File url="FrameBase\Form_Work.xfdl" checksum="20240524162917" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20240527144524" errormsg=""/>
+      <File url="FrameBase\Form_Work.xfdl" checksum="20240527134912" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\framework\Framework.json" checksum="20210927112448" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\resources\Resource.json" checksum="20210927112448" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\CompBase.json" checksum="20210927112446" errormsg=""/>
@@ -22,6 +22,13 @@
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\Grid.json" checksum="20210927112446" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ListView.json" checksum="20210927112448" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\DeviceAPI.json" checksum="20210927112446" errormsg=""/>
+      <File url="FrameBase\TopFrame.xfdl" checksum="20240527142913" errormsg=""/>
+      <File url="_resource_\_xcss_\nexa_study.xcss" checksum="20240527094037" errormsg=""/>
+      <File url="_resource_\_theme_\study_thema\theme.xcss" checksum="20240527110135" errormsg=""/>
+      <File url="_resource_\_theme_\Form\theme.xcss" checksum="20240527110630" errormsg=""/>
+      <File url="Form\Form_Work.xfdl" checksum="20240527134912" errormsg=""/>
+      <File url="FrameBase\LeftFrame.xfdl" checksum="20240527145325" errormsg=""/>
+      <File url="FrameBase\MainForm.xfdl" checksum="20240527142626" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

@@ -56,11 +56,18 @@ if (nexacro.Environment)
     env.on_loadVariables = function ()
     {
         // Variables
-
+        nexacro.setEnvironmentVariable("Env_Var1", "Env Variable Value1");
+        nexacro.setEnvironmentVariable("Env_Var2", "Env Variable Value2");
+        nexacro.setEnvironmentVariable("Env_Var3", "Env Variable Value3");
+        nexacro.setEnvironmentVariable("ev_runMode", "L");
         // Cookies
-
+        nexacro.setCookieVariable("Env_Cookie1", "Env Cookie Value1", "false");
+        nexacro.setCookieVariable("Env_Cookie2", "Env Cookie Value2", "false");
+        nexacro.setCookieVariable("Env_Cookie3", "Env Cookie Value3", "false");
         // HTTP Header
-
+        nexacro.setHTTPHeaderVariable("Env_Http1", "Env HTTP Header Value1");
+        nexacro.setHTTPHeaderVariable("Env_Http2", "Env HTTP Header Value2");
+        nexacro.setHTTPHeaderVariable("Env_Http3", "Env HTTP Header Value3");
     };
 	env.on_loadDeviceAdaptors = function ()
 	{

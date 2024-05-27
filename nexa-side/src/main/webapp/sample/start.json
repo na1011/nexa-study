@@ -101,7 +101,7 @@
         ],
         "screen" :
         [    
-        {"id":"Desktop_screen","type":"desktop","themeid":"theme::default"}
+        {"id":"Desktop_screen","type":"desktop","themeid":"theme::study_thema"}
         ],
         "xadl" :
         [
@@ -109,7 +109,11 @@
         	"screenid":"Desktop_screen",
         	"launch":"./Application_Desktop.xadl.js",
         	"quickview":"./Application_Desktop.xadl.quickview.js",
-        	"form":[]
+        	"form":[
+        				"./FrameBase/TopFrame.xfdl.js",
+        		"./FrameBase/LeftFrame.xfdl.js",
+        		"./FrameBase/MainForm.xfdl.js"
+        	]
         }
         ],  
         "protocol" :

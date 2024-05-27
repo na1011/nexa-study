@@ -1,11 +1,11 @@
 package sample.vo;
 
-import java.time.LocalDate;
-
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 @Getter
-public class EmpVO {
+public class EmpVO extends RowTypeVO {
 	
 	private int eno;
 	private String ename;
@@ -15,5 +15,4 @@ public class EmpVO {
 	private int salary;
 	private int commission;
 	private int dno;
-	
 }

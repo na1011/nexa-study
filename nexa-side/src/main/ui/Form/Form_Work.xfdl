@@ -2,7 +2,7 @@
 <FDL version="2.1">
   <Form id="form" width="1280" height="720" titletext="New Form" onload="form_onload">
     <Layouts>
-      <Layout height="720" mobileorientation="landscape" width="1280">
+      <Layout height="720" mobileorientation="landscape" width="1280" screenid="Desktop_screen">
         <Combo id="Combo00" taborder="0" text="eno" left="30" top="60" width="132" height="26" onitemchanged="Combo00_onitemchanged" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="eno">
           <Dataset id="innerdataset">
             <ColumnInfo>
@@ -23,7 +23,7 @@
         </Combo>
         <Edit id="Edit00" taborder="1" left="172" top="60" width="246" height="26"/>
         <Button id="Button00" taborder="2" text="검 색" left="454" top="55" width="130" height="36" onclick="Button00_onclick"/>
-        <Grid id="Grid00" taborder="3" left="30" top="104" width="554" height="313" binddataset="ds_emp" autofittype="col">
+        <Grid id="Grid00" taborder="3" left="30" top="104" width="554" height="313" binddataset="ds_emp" autofittype="col" autoenter="select">
           <Formats>
             <Format id="default">
               <Columns>
@@ -38,7 +38,7 @@
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
-                <Row size="24"/>
+                <Row size="28"/>
               </Rows>
               <Band id="head">
                 <Cell text="사번"/>
@@ -52,17 +52,20 @@
               </Band>
               <Band id="body">
                 <Cell text="bind:eno"/>
-                <Cell col="1" text="bind:ename"/>
-                <Cell col="2" text="bind:job"/>
-                <Cell col="3" text="bind:manager"/>
-                <Cell col="4" text="bind:hiredate"/>
-                <Cell col="5" text="bind:salary"/>
-                <Cell col="6" text="bind:commission"/>
-                <Cell col="7" text="bind:dno"/>
+                <Cell col="1" text="bind:ename" edittype="normal" displaytype="editcontrol"/>
+                <Cell col="2" text="bind:job" edittype="normal" displaytype="editcontrol"/>
+                <Cell col="3" text="bind:manager" edittype="normal" displaytype="editcontrol"/>
+                <Cell col="4" text="bind:hiredate" edittype="normal" displaytype="editcontrol"/>
+                <Cell col="5" text="bind:salary" edittype="normal" displaytype="editcontrol"/>
+                <Cell col="6" text="bind:commission" edittype="normal" displaytype="editcontrol"/>
+                <Cell col="7" text="bind:dno" edittype="normal" displaytype="editcontrol"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
+        <Button id="Button01" taborder="4" text="추가" left="600" top="106" width="105" height="44" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="5" text="삭제" left="600" top="170" width="105" height="44" onclick="Button02_onclick"/>
+        <Button id="Button03" taborder="6" text="수정" left="600" top="230" width="105" height="44" onclick="Button03_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -97,7 +100,7 @@
     </Objects>
     <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.fnSearch();
+	//this.fnSearch();
 };
 
 this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -146,7 +149,58 @@ this.fnCallback = function (svcID, errCode, errMsg)
 				this.alert("조회된 결과가 없습니다.");
 			}
 			break;
+			
+		case "save":
+			this.alert("저장 되었습니다.");
+			this.fnSearch();
+			
+			break;
 	}
+};
+
+
+// DB 추가
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_emp.addRow();
+	this.ds_emp.set_rowposition(nRow);
+	this.Grid00.setCellPos(1);
+	this.Grid00.showEditor(true);
+};
+
+// DB 삭제
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_emp.rowposition;
+	this.ds_emp.deleteRow(nRow);
+};
+
+// DB 수정
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSave();
+};
+
+// 데이터 저장 트랜잭션
+this.fnSave = function ()
+{	
+	var svcID = "save";
+	var svcURL = "Svc::employee/update";
+	var inData = "input=ds_emp:U";
+	var outData = "";
+	var arg = "";
+	var callBack = "fnCallback";
+	var isAsync = true;
+	
+	this.transaction(
+		svcID,
+		svcURL,
+		inData,
+		outData,
+		arg,
+		callBack,
+		isAsync
+	);
 };
 
 

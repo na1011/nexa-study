@@ -18,4 +18,19 @@
 		ORDER BY eno ASC
 	</select>
 
+	<insert id="save" parameterType="employee">
+		INSERT INTO emp_table
+		VALUES (#{eno}, #{ename}, #{job}, #{manager}, #{hiredate}, #{salary}, #{commission}, #{dno})
+	</insert>
+	
+	<update id="update" parameterType="employee">
+		UPDATE emp_table
+		SET ename = #{ename}, job = #{job}, manager = #{manager}, hiredate = #{hiredate}, salary = #{salary}, commission = #{commission}, dno = #{dno}
+		WHERE eno = #{eno}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM emp_table
+		WHERE eno = #{eno}
+	</delete>
 </mapper>
